@@ -1,7 +1,7 @@
 main = do
     putStrLn "Enter a phrase to convert to leetcode"
     phrase <- getLine
-    putStrLn "Your phrase with leet code is: " ++ converter
+    putStrLn $ converter phrase
 
 converter :: String -> String
 converter xs = [if x == 'o' 
@@ -10,4 +10,6 @@ converter xs = [if x == 'o'
                            then '3' 
                            else if x == 'a' 
                                    then '@' 
-                                   else x | x <- xs]
+                                   else if x == 'l'
+                                        then '1'
+                                        else x | x <- xs]
