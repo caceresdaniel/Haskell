@@ -19,6 +19,11 @@ main = do
 readF :: [String] -> IO ()
 readF [fileName] = do
     contents <- readFile fileName
-    let studentInfo = lines contents
-        cells = zipWith (\n line -> show n ++ " - " ++ line) [0..] studentInfo
+    let cells = splitter (==',') contents
     putStr $ unlines cells
+
+splitter :: (Char -> Bool) -> String -> [String]
+splitter f x =  case dropWhile f x of
+            "" -> []
+            x' -> w : splitter f xs
+                    where (w, xs) = break f x'
